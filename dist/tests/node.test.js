@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -34,13 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 var tests = require('./node');
 describe('Node JS environment', function () {
     var transactionResponse;
     var transactionSignatures;
     var failedAsPlanned;
-    it('transacts with configuration object', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('transacts with configuration object', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, tests.transactWithConfig()];
@@ -51,7 +51,7 @@ describe('Node JS environment', function () {
             }
         });
     }); });
-    it('transacts with manually configured TAPOS fields', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('transacts with manually configured TAPOS fields', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, tests.transactWithoutConfig()];
@@ -62,7 +62,7 @@ describe('Node JS environment', function () {
             }
         });
     }); }, 10000);
-    it('transacts without broadcasting, returning signatures and packed transaction', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('transacts without broadcasting, returning signatures and packed transaction', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, tests.transactWithoutBroadcast()];
@@ -74,7 +74,7 @@ describe('Node JS environment', function () {
             }
         });
     }); });
-    it('broadcasts packed transaction, given valid signatures', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('broadcasts packed transaction, given valid signatures', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, tests.transactWithoutBroadcast()];
@@ -88,7 +88,7 @@ describe('Node JS environment', function () {
             }
         });
     }); });
-    it('throws appropriate error message without configuration object or TAPOS in place', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('throws appropriate error message without configuration object or TAPOS in place', function () { return __awaiter(void 0, void 0, void 0, function () {
         var e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -112,7 +112,7 @@ describe('Node JS environment', function () {
             }
         });
     }); });
-    it('throws an an error with RpcError structure for invalid RPC calls', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('throws an an error with RpcError structure for invalid RPC calls', function () { return __awaiter(void 0, void 0, void 0, function () {
         var e_2;
         return __generator(this, function (_a) {
             switch (_a.label) {

@@ -34,17 +34,19 @@ var __spread = (this && this.__spread) || function () {
     for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
     return ar;
 };
-var __values = (this && this.__values) || function (o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
-    return {
+    if (o && typeof o.length === "number") return {
         next: function () {
             if (o && i >= o.length) o = void 0;
             return { value: o && o[i++], done: !o };
         }
     };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.deserializeAction = exports.deserializeActionData = exports.serializeAction = exports.serializeActionData = exports.transactionHeader = exports.getTypesFromAbi = exports.getType = exports.createInitialTypes = exports.hexToUint8Array = exports.arrayToHex = exports.symbolToString = exports.stringToSymbol = exports.blockTimestampToDate = exports.dateToBlockTimestamp = exports.timePointSecToDate = exports.dateToTimePointSec = exports.timePointToDate = exports.dateToTimePoint = exports.supportedAbiVersion = exports.SerialBuffer = exports.SerializerState = void 0;
 var numeric = require("./roxejs-numeric");
 /** State for serialize() and deserialize() */
 var SerializerState = /** @class */ (function () {
@@ -545,9 +547,9 @@ function deserializeUnknown(buffer) {
     throw new Error('Don\'t know how to deserialize ' + this.name);
 }
 function serializeStruct(buffer, data, state, allowExtensions) {
+    var e_2, _a;
     if (state === void 0) { state = new SerializerState(); }
     if (allowExtensions === void 0) { allowExtensions = true; }
-    var e_2, _a;
     if (typeof data !== 'object') {
         throw new Error('expected object containing data: ' + JSON.stringify(data));
     }
@@ -582,9 +584,9 @@ function serializeStruct(buffer, data, state, allowExtensions) {
     }
 }
 function deserializeStruct(buffer, state, allowExtensions) {
+    var e_3, _a;
     if (state === void 0) { state = new SerializerState(); }
     if (allowExtensions === void 0) { allowExtensions = true; }
-    var e_3, _a;
     var result;
     if (this.base) {
         result = this.base.deserialize(buffer, state, allowExtensions);
@@ -998,7 +1000,7 @@ function getTypesFromAbi(initialTypes, abi) {
                 type.base = getType(types, type.baseName);
             }
             try {
-                for (var _r = __values(type.fields), _s = _r.next(); !_s.done; _s = _r.next()) {
+                for (var _r = (e_9 = void 0, __values(type.fields)), _s = _r.next(); !_s.done; _s = _r.next()) {
                     var field = _s.value;
                     field.type = getType(types, field.typeName);
                 }

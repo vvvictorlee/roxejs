@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -34,26 +35,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var roxejs_jsonrpc_1 = require("../roxejs-jsonrpc");
 var roxejs_rpcerror_1 = require("../roxejs-rpcerror");
 describe('JSON RPC', function () {
-    var endpoint = 'http://localhost';
+    var endpoint = 'http://47.91.226.192:7878';
     var fetchMock = fetch;
     var jsonRpc;
     beforeEach(function () {
         fetchMock.resetMocks();
         jsonRpc = new roxejs_jsonrpc_1.JsonRpc(endpoint);
     });
-    it('throws error bad status', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('throws error bad status', function () { return __awaiter(void 0, void 0, void 0, function () {
         var actMessage, expMessage, accountName, expReturn, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     actMessage = '';
                     expMessage = 'Not Found';
-                    accountName = 'myaccountaaa';
+                    accountName = 'dividend';
                     expReturn = { data: '12345', message: expMessage };
                     fetchMock.once(JSON.stringify(expReturn), { status: 404 });
                     _a.label = 1;
@@ -74,7 +74,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('throws error unprocessed', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('throws error unprocessed', function () { return __awaiter(void 0, void 0, void 0, function () {
         var actMessage, expMessage, accountName, expReturn, e_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -109,7 +109,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls provided fetch instead of default', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls provided fetch instead of default', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, accountName, expReturn, expParams, mockResp, myFetch;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -140,7 +140,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_abi', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_abi', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, accountName, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -164,7 +164,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_account', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_account', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, accountName, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -188,7 +188,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_block_header_state', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_block_header_state', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, blockNumOrId, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -212,7 +212,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_block', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_block', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, blockNumOrId, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -236,7 +236,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_code', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_code', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, accountName, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -260,7 +260,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_currency_balance with all params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_currency_balance with all params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, code, account, symbol, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -288,7 +288,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_currency_balance with default params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_currency_balance with default params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, code, account, symbol, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -316,7 +316,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_currency_stats with all params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_currency_stats with all params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, code, symbol, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -342,7 +342,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_info', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_info', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -363,7 +363,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_producer_schedule', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_producer_schedule', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -384,7 +384,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_producers with all params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_producers with all params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, json, lowerBound, limit, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -412,7 +412,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_producers with default params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_producers with default params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, json, lowerBound, limit, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -440,7 +440,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_raw_code_and_abi', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_raw_code_and_abi', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, accountName, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -464,7 +464,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_table_rows with all params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_table_rows with all params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, json, code, scope, table, tableKey, lowerBound, upperBound, limit, indexPosition, keyType, expReturn, reverse, showPayer, callParams, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -511,7 +511,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_table_rows with default params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_table_rows with default params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, json, code, scope, table, tableKey, lowerBound, upperBound, limit, indexPosition, keyType, reverse, showPayer, expReturn, callParams, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -562,7 +562,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_table_by_scope with all params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_table_by_scope with all params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, code, table, lowerBound, upperBound, limit, expReturn, callParams, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -595,7 +595,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls get_table_by_scope with default params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls get_table_by_scope with default params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, code, table, lowerBound, upperBound, limit, expReturn, callParams, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -631,7 +631,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls getRequiredKeys', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls getRequiredKeys', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, keys, expReturn, callParams, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -660,7 +660,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls push_transaction', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls push_transaction', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, signatures, serializedTransaction, limit, expReturn, callParams, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -699,7 +699,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls db_size_get', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls db_size_get', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -720,7 +720,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls history_get_actions with all params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls history_get_actions with all params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, accountName, pos, offset, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -748,7 +748,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls history_get_actions with default params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls history_get_actions with default params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, accountName, pos, offset, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -776,7 +776,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls history_get_transaction with all params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls history_get_transaction with all params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, id, blockNumHint, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -802,7 +802,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls history_get_transaction with default params', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls history_get_transaction with default params', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, id, blockNumHint, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -828,7 +828,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls history_get_key_accounts', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls history_get_key_accounts', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, publicKey, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -852,7 +852,7 @@ describe('JSON RPC', function () {
             }
         });
     }); });
-    it('calls history_get_controlled_accounts', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('calls history_get_controlled_accounts', function () { return __awaiter(void 0, void 0, void 0, function () {
         var expPath, controllingAccount, expReturn, expParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {

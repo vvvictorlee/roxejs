@@ -1,6 +1,6 @@
 {
   "name": "roxejs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Talk to roxe API",
   "main": "dist/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/roxe-chain/roxejs.git"
+    "url": "https://github.com/vvvictorlee/roxejs.git"
   },
   "dependencies": {
     "babel-runtime": "6.26.0",

@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -34,7 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var text_encoding_1 = require("text-encoding");
 var roxejs_api_1 = require("../roxejs-api");
@@ -157,12 +157,11 @@ var deserializedActions = [
 ];
 describe('roxejs-api', function () {
     var api;
-    var fetch = function (input, init) { return __awaiter(_this, void 0, void 0, function () {
-        var _this = this;
+    var fetch = function (input, init) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, ({
                     ok: true,
-                    json: function () { return __awaiter(_this, void 0, void 0, function () {
+                    json: function () { return __awaiter(void 0, void 0, void 0, function () {
                         return __generator(this, function (_a) {
                             if (input === '/v1/chain/get_raw_code_and_abi') {
                                 return [2 /*return*/, {
@@ -178,16 +177,17 @@ describe('roxejs-api', function () {
     }); };
     beforeEach(function () {
         var rpc = new roxejs_jsonrpc_1.JsonRpc('', { fetch: fetch });
-        var signatureProvider = new roxejs_jssig_1.JsSignatureProvider(['5JtUScZK2XEp3g9gh7F8bwtPTRAkASmNrrftmx4AxDKD5K4zDnr']);
+        var signatureProvider = new roxejs_jssig_1.JsSignatureProvider(['5KS2QMfShmDjHaLAZEPJgehVXAobgo5YfVw1mzPBHaPpGfKbkZL']);
         var chainId = '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca';
         api = new roxejs_api_1.Api({
-            rpc: rpc, signatureProvider: signatureProvider, chainId: chainId, textDecoder: new text_encoding_1.TextDecoder(), textEncoder: new text_encoding_1.TextEncoder(),
+            rpc: rpc, signatureProvider: signatureProvider, chainId: chainId,
+            textDecoder: new text_encoding_1.TextDecoder(), textEncoder: new text_encoding_1.TextEncoder(),
         });
     });
     it('Doesnt crash', function () {
         expect(api).toBeTruthy();
     });
-    it('getAbi returns an abi', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('getAbi returns an abi', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -199,7 +199,7 @@ describe('roxejs-api', function () {
             }
         });
     }); });
-    it('getTransactionAbis returns abis by transactions', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('getTransactionAbis returns abis by transactions', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -211,7 +211,7 @@ describe('roxejs-api', function () {
             }
         });
     }); });
-    it('getContract returns a contract', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('getContract returns a contract', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -227,7 +227,7 @@ describe('roxejs-api', function () {
         var tx = api.deserializeTransaction(serializedTx);
         expect(tx).toEqual(deserializedTx);
     });
-    it('serializeActions converts actions to hex', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('serializeActions converts actions to hex', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -239,7 +239,7 @@ describe('roxejs-api', function () {
             }
         });
     }); });
-    it('deserializeActions converts actions from hex', function () { return __awaiter(_this, void 0, void 0, function () {
+    it('deserializeActions converts actions from hex', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
